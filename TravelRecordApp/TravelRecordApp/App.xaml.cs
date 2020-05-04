@@ -1,4 +1,6 @@
 using System;
+using TravelRecordApp.Model;
+using TravelRecordApp.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,14 +9,25 @@ namespace TravelRecordApp
 {
 	public partial class App : Application
 	{
-		public App ()
+        public static string DatabaseLocation = string.Empty;
+        public static User user = new User();
+        public static MongoDBService _mongoDBService;
+
+        public App ()
 		{
 		    InitializeComponent();
-
-			MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage());
 		}
+        public App(string databaseLocation)
+        {
+            InitializeComponent();
 
-		protected override void OnStart ()
+            MainPage = new NavigationPage(new MainPage());
+            DatabaseLocation = databaseLocation;
+            _mongoDBService = new MongoDBService("TravelRecordDB");
+        }
+
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}

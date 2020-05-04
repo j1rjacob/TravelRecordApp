@@ -7,13 +7,20 @@
     <StackLayout 
         VerticalOptions="Center"
         Margin="20">
+        <Image x:Name="iconImage"  
+           Aspect="AspectFit"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="150"
+           Margin="0, 0, 0, 50"/>
         <Entry 
             x:Name="emailEntry"
+            Text="{Binding Email, Mode=TwoWay}"
             Placeholder="Email"
             TextColor="{StaticResource blueColor}"
             Keyboard="Email"/>
         <Entry 
             x:Name="passwordEntry"
+            Text="{Binding Password, Mode=TwoWay}"
             Placeholder="Password"
             TextColor="{StaticResource blueColor}"
             IsPassword="True"/>
@@ -22,7 +29,12 @@
             Margin="0,50,0,0"
             Text="Log In" 
             Style="{StaticResource normalButton}"
-            Clicked="LoginButton_Clicked"/>
+            Command="{Binding LoginCommand}"
+            CommandParameter="{Binding User}"/>
+        <Button x:Name="registerUserButton"
+            Text="Register"
+            HorizontalOptions="End"
+            Command="{Binding RegisterNavigationCommand}"/>
     </StackLayout>
 
 </ContentPage>
